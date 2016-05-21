@@ -23,33 +23,24 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'tags'); ?>
-		<?php echo $form->textArea($model,'tags'); ?>
+		<?php $this->widget('CAutoComplete', array(
+			'model'=>$model,
+			'attribute'=>'tags',
+			'url'=>array('suggestTags'),
+			'multiple'=>true,
+			'htmlOptions'=>array('size'=>50),
+		)); ?>
+		<p class="hint">Please separate different tags with commas.</p>
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 
-	<div class="row">
+<div class="row">
 		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
+		<?php echo $form->dropDownList($model,'status',Lookup::items('PostStatus')); ?>
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'create_time'); ?>
-		<?php echo $form->textField($model,'create_time'); ?>
-		<?php echo $form->error($model,'create_time'); ?>
-	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'update_time'); ?>
-		<?php echo $form->textField($model,'update_time'); ?>
-		<?php echo $form->error($model,'update_time'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'author_id'); ?>
-		<?php echo $form->textField($model,'author_id'); ?>
-		<?php echo $form->error($model,'author_id'); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
