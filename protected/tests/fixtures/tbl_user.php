@@ -1,18 +1,9 @@
 <?php
 
 return array(
-	/*
-	'sample1'=>array(
-		'username' => '',
-		'password' => '',
-		'email' => '',
-		'profile' => '',
+	array(
+		'username'=>'demo',
+		'password'=>'$2a$10$JTJf6/XqC94rrOtzuF397OHa4mbmZrVTBOQCmYD9U.obZRUut4BoC',
+		'email'=>'webmaster@example.com',
 	),
-	'sample2'=>array(
-		'username' => '',
-		'password' => '',
-		'email' => '',
-		'profile' => '',
-	),
-	*/
 );

@@ -1,9 +1,7 @@
 <?php
 
 /**
- * This is the model class for table "{{user}}".
- *
- * The followings are the available columns in table '{{user}}':
+ * The followings are the available columns in table 'tbl_user':
  * @property integer $id
  * @property string $username
  * @property string $password
@@ -13,12 +11,17 @@
 class User extends CActiveRecord
 {
 	/**
+	 * Returns the static model of the specified AR class.
+	 * @return static the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
 	 * @return string the associated database table name
 	 */
-	 
-	 
-	
-	 
 	public function tableName()
 	{
 		return '{{user}}';
@@ -33,12 +36,8 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('username, password, email', 'required'),
-			array('username, email', 'length', 'max'=>128),
-			array('password', 'length', 'max'=>64),
+			array('username, password, email', 'length', 'max'=>128),
 			array('profile', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, username, password, email, profile', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,52 +68,22 @@ class User extends CActiveRecord
 	}
 
 	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 * Checks if the given password is correct.
+	 * @param string the password to be validated
+	 * @return boolean whether the password is valid
 	 */
-	public function search()
+	public function validatePassword($password)
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-
-		$criteria->compare('username',$this->username,true);
-
-		$criteria->compare('password',$this->password,true);
-
-		$criteria->compare('email',$this->email,true);
-
-		$criteria->compare('profile',$this->profile,true);
-
-		return new CActiveDataProvider('User', array(
-			'criteria'=>$criteria,
-		));
+		return CPasswordHelper::verifyPassword($password,$this->password);
 	}
 
 	/**
-	 * Returns the static model of the specified AR class.
-	 * @return User the static model class
+	 * Generates the password hash.
+	 * @param string password
+	 * @return string hash
 	 */
-	public static function model($className=__CLASS__)
+	public function hashPassword($password)
 	{
-		return parent::model($className);
+		return CPasswordHelper::hashPassword($password);
 	}
-	 public function hashPassword($password)
-    {
-        return CPasswordHelper::hashPassword($password);
-    }
-	public function validatePassword($password)
-    {
-        return CPasswordHelper::verifyPassword($password,$this->password);
-    }
 }

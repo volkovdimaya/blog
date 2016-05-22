@@ -1,14 +1,12 @@
 <?php
 
 return array(
-	/*
-	'sample1'=>array(
-		'name' => '',
-		'frequency' => '',
+	array(
+		'name'=>'yii',
+		'frequency'=>1,
 	),
-	'sample2'=>array(
-		'name' => '',
-		'frequency' => '',
+	array(
+		'name'=>'blog',
+		'frequency'=>1,
 	),
-	*/
 );
