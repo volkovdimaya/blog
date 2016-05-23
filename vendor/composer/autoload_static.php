@@ -4,22 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit306c1c1de53a5b7f9efa2632c1650f3e
+class ComposerStaticInit1065ded2c19fca075f2d842864213309
 {
-    public static $prefixesPsr0 = array (
-        'Y' => 
-        array (
-            'YiiBlog' => 
-            array (
-                0 => __DIR__ . '/../..' . '/',
-            ),
-        ),
+    public static $classMap = array (
+        'Yii' => __DIR__ . '/..' . '/yiisoft/yii/framework/yii.php',
+        'YiiBase' => __DIR__ . '/..' . '/yiisoft/yii/framework/YiiBase.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit306c1c1de53a5b7f9efa2632c1650f3e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1065ded2c19fca075f2d842864213309::$classMap;
 
         }, null, ClassLoader::class);
     }
